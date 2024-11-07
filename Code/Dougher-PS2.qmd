@@ -6,6 +6,7 @@ editor: visual
 ---
 
 ## Settings things up
+
 ```{r}
 rm(list=ls()) #clearing R's brain
 library(here) #installing necessary packages
@@ -13,29 +14,34 @@ library(tidyverse)
 ```
 
 ## Importing data
+
 ```{r}
 halloween <- read.csv(here("Data", "Halloween_data_PS2.csv"))
 ```
 
 ## Changing character variables to factor variables
+
 ```{r}
 halloween$Costume_type <- as.factor(halloween$Costume_type) #changes to factor variable
 halloween$sugar_high <- as.factor(halloween$sugar_high)
 ```
 
-## Changing collumn names 
+## Changing collumn names
+
 ```{r}
 colnames(halloween)[2] = "costume_type" #changing collumn names
 colnames(halloween)[5] = "candy_consumed"
 ```
 
 ## Examining the data
+
 ```{r}
 glimpse(halloween)
 str(halloween)
 ```
 
 ## Changing treatment variables
+
 ```{r}
 levels(halloween$costume_type)
 fix <- which(halloween$costume_type %in% c("not scary", "Not scary", "notscary")) #identify the rows that need repair
@@ -70,6 +76,7 @@ levels(halloween$sugar_high)
 ```
 
 ## Making a scatterplot
+
 ```{r}
 ggplot(halloween, aes(x = age, y = min_temp_trick_treat_C, shape = costume_type, colour = costume_type)) + #making shape and colour equal to costume_type makes the points on the graph more visibly different for each level of costume_type
   geom_point(size = 3) +
@@ -79,11 +86,13 @@ ggplot(halloween, aes(x = age, y = min_temp_trick_treat_C, shape = costume_type,
 ```
 
 ## Using the filter function to isolate specific data
+
 ```{r}
 halloween1 <- filter(halloween, age >= 10, candy_consumed >= 100) #creating a new data set with the appropriate values I filtered
 ```
 
 ## Creating a count group of data
+
 ```{r}
 halloween_counts <- halloween1 |> group_by(age, candy_pieces, candy_consumed ) |> #pulls only those three categories into a new data set
   summarize(
@@ -92,6 +101,7 @@ halloween_counts <- halloween1 |> group_by(age, candy_pieces, candy_consumed ) |
 ```
 
 ## Plotting a histogram
+
 ```{r}
 ggplot(halloween_counts, aes(x = candy_pieces)) +
   geom_histogram(bins = 30) + #alters width of bars
@@ -100,6 +110,7 @@ ggplot(halloween_counts, aes(x = candy_pieces)) +
 ```
 
 ## Calculating summary statistics showing mean and standard deviation for age and candy_consumed, broken down by sugar_high
+
 ```{r}
 halloween |> group_by(sugar_high) |> #grabs sugar_high
   summarise(mean(age)) |> #gives the mean
@@ -119,6 +130,7 @@ halloween |> group_by(sugar_high) |>
 ```
 
 ## Creating a box and whisker plot
+
 ```{r}
 ggplot(halloween, aes(x = costume_type, y = candy_consumed)) +
   geom_boxplot() +

@@ -1,0 +1,21 @@
+---
+title: "PS2 feedback"
+format: html
+editor: visual
+---
+
+## PS2 feedback
+
+You neglected to use any functions to examine the dataset until after you made changes to the data. Backwards work flow. 
+
+I would like to see a bit more commentary on what you learn from executing code chunks. For example, after you examine your data (lines 38 - 41), you never say what you learn from doing so. For example, you might say "My dataset has 49 rows and 7 variables, of which 2 are factor, one is character and the others are numeric" or similar. That's why this code should come earlier than maniuplating the dataset.
+
+Also, I'd like to see explanation for WHY you decided to change some column names. It is fine that you did so, but why? Imagine that you come back to this .qmd file in a year with no other supporting documentation (like the problem set handout). You would want to know why you made each choice.
+
+You neglected to do any error checking on any of the numeric variables.
+
+Work on your markdown choices in your .qmd - some of what renders as headers has a lot of text.
+
+Nice job overall!
+
+
